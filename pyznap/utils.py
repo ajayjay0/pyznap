@@ -177,7 +177,7 @@ def create_config(path):
     logger = logging.getLogger(__name__)
 
     CONFIG_FILE = os.path.join(path, 'pyznap.conf')
-    config = resource_string(__name__, 'config/pyznap.conf').decode("utf-8")
+    config = resource_string(__name__, 'config/etc/pyznap.conf').decode("utf-8")
 
     logger.info('Initial setup...')
 
