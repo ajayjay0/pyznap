@@ -84,6 +84,8 @@ def _main():
     parser_send.add_argument('--retry-interval', action="store", type=int,
                              dest='retry_interval', default=10,
                              help='interval in seconds between retries. default is 10')
+    
+    parser.epilog = "ZFS properties: [pyznap:exclude, pyznap:max_size]"
 
     if len(sys.argv)==1:
         parser.print_help(sys.stderr)

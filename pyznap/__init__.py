@@ -8,5 +8,4 @@
     :license: GPLv3, see LICENSE for more details.
 """
 
-
-__version__ = 'v1.6.0+local-b1'
+__version__ = 'v1.6.0+local-b2'

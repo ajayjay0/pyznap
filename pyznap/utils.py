@@ -272,3 +272,40 @@ def bytes_fmt(num):
         num /= 1024
     else:
         return "{:3.1f}{:s}".format(num, 'Y')
+
+
+# based on https://stackoverflow.com/a/42865957/2002471
+def parse_size(size):
+    """Converts human readable format to bytes
+
+    Parameters
+    ----------
+    str : size
+        formatted size
+
+    Returns
+    -------
+    float
+        actual bytes
+    """
+
+    units = {"B": 1, "KB": 2**10, "MB": 2**20, "GB": 2**30, "TB": 2**40, "PB": 2**50}
+    
+    logger = logging.getLogger(__name__)
+    
+    size = str(size).upper()
+    #print("parsing size ", size)
+    if size[-1].strip() != "B":
+      size = size + "B"
+    if not re.match(r' ', size):
+        size = re.sub(r'([KMGT]?B)', r' \1', size)
+    
+    result = 0
+    try:
+      number, unit = [string.strip() for string in size.split()]
+      result = int(float(number)*units[unit])
+    except:
+      logger.error("Could not convert {} to a size in bytes, using default={}".format(size, result))
+    
+    return result
+
